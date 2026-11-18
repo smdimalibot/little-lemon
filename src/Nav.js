@@ -1,7 +1,7 @@
 function Nav() {
     return (
         <nav>
-            <img scr="logo.png" alt="Little Lemon Logo"/>
+            <img src="logo.png" alt="Little Lemon Logo"/>
             <ul>
                 <li><a href="#">Home</a></li>
                 <li><a href="#">About</a></li>

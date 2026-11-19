@@ -84,6 +84,144 @@ img {
   display: block;
 }
 
+.btn-primary {
+  display: inline-block;
+  background-color: #F4CE14;
+  color: #333333;
+  font-weight: 700;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 16px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 16px;
+}
+
+.btn-primary:hover {
+  background-color: #e0bc10;
+}
+
+.hero-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1100px;
+  margin: 0 auto;
+  gap: 40px;
+}
+
+hero-text h1 {
+  color: #F4CE14;
+}
+
+.hero-text h2, .hero-text p {
+  color: #EDEFEE;
+}
+
+.hero-image img {
+  width: 350px;
+  height: 380px;
+  object-fit: cover;
+  border-radius: 16px;
+}
+
+.specials-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.specials-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+
+.special-card {
+  background-color: #EDEFEE;
+  border-radius: 16px 16px 0 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.special-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 0;
+}
+
+.card-body {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.card-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.price {
+  color: #EE9972;
+  font-weight: 700;
+}
+
+.order-link {
+  font-weight: 700;
+  margin-top: auto;
+}
+
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  max-width: 1100px;
+  margin: 30px auto 0;
+}
+
+.testimonial-card {
+  background-color: #FFFFFF;
+  padding: 20px;
+  border-radius: 16px;
+  text-align: left;
+}
+
+.rating {
+  color: #F4CE14;
+  font-size: 20px;
+  margin-bottom: 8px;
+}
+
+.chicago-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1100px;
+  margin: 60px auto;
+  padding: 0 20px;
+  gap: 40px;
+}
+
+.chicago-text h2 {
+  color: #F4C314;
+}
+
+.chicago-images {
+  display: flex;
+  gap: 16px;
+}
+
+.chicago-images img {
+  width: 240px;
+  height: 300px;
+  object-fit: cover;
+}
+
 @media (max-width: 768px) {
   nav {
     flex-direction: column;
@@ -94,5 +232,18 @@ img {
     flex-direction: column;
     align-items: center;
     gap: 10px
+  }
+
+  .hero-content, .chicago-section {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .specials-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .testimonials-grid {
+    grid-template-columns: repeat(2, 1fr);
   }
 }

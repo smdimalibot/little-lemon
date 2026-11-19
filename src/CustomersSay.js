@@ -31,4 +31,4 @@ function CustomersSay() {
     );
 }
 
-export default CustomerSay;
+export default CustomersSay;

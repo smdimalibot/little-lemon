@@ -5,7 +5,7 @@ function BookingForm() {
     const [time, setTime] = useState('17:00');
     const [guests, setGuests] = useState(2);
     const [occasion, setOccasion] = useState('Birthday');
-    const [availableTimes, setAvailableTimes] = useState([
+    const [availableTimes] = useState([
         '17:00', 
         '18:00', 
         '19:00', 
@@ -13,14 +13,14 @@ function BookingForm() {
         '21:00'
     ]);
 
-    const HandleSubmit = (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault();
         console.log({ date, time, guests, occasion});
     };
 
     return (
         <form
-            onSubmit={HandleSubmit}
+            onSubmit={handleSubmit}
             style={{ display: 'grid', maxWidth: '320px', gap: '16px'}}
         >
             <label htmlFor="res-date">Choose date</label>
@@ -36,7 +36,7 @@ function BookingForm() {
             <select
                 id="res-time"
                 value={time}
-                onChangeCapture={(e) => setTime(e.target.value)}
+                onChange={(e) => setTime(e.target.value)}
             >
                 {availableTimes.map((slot) => (
                     <option key={slot} value={slot}>
@@ -45,11 +45,23 @@ function BookingForm() {
                 ))}
             </select>
 
+            <label htmlFor="guests">Number of Guests</label>
+            <input
+                type="number"
+                id="guests"
+                placeholder="1"
+                min="1"
+                max="10"
+                value={guests}
+                onChange = {(e) => setGuests(Number(e.target.value))}
+                required
+            />
+
             <label htmlFor="occasion">Occasion</label>
             <select
                 id="occasion"
                 value={occasion}
-                onChangeCapture={(e) => setOccasion(e.target.value)}
+                onChange={(e) => setOccasion(e.target.value)}
             >
                 <option value="Birthday">Birthday</option>
                 <option value="Anniversary">Anniversary</option>

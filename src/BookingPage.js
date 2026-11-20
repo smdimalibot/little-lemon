@@ -1,3 +1,5 @@
+import BookingForm from './BookingForm';
+
 function BookingPage() {
     return (
         <section className="booking-section">

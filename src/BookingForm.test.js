@@ -9,7 +9,7 @@ test('Renders static text inside BookingForm', () => {
         <BookingForm availableTimes={sampleTimes} dispatch={jest.fn()} />
     );
     const labelElement = screen.getByText(/Choose date/i);
-    expect(times).toEqual(sampleTimes);
+    expect(labelElement).toBeInTheDocument();
 });
 
 test('initializeTimes returns the expected initial available times', () => {
@@ -20,5 +20,5 @@ test('initializeTimes returns the expected initial available times', () => {
 test('updateTimes return the expected time state', () => {
     const action = { type: 'UPDATE_TIMES', date: '2026-11-25' };
     const updatedTimes = updateTimes (sampleTimes, action);
-    expected(updatedTimes).toEqual(sampleTimes);
+    expect(updatedTimes).toEqual(sampleTimes);
 });

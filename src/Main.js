@@ -2,25 +2,7 @@ import { useReducer } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import HomePage from './HomePage';
 import BookingPage from './BookingPage';
-import bookingTimes from './bookingTimes';
-
-
-export const initializeTimes = () => [
-    '17:00',
-    '18:00',
-    '19:00',
-    '20:00',
-    '21:00'
-];
-
-export const updatesTimes = (state, action) => {
-    switch (action.type) {
-        case 'UPDATE_TIMES':
-            return state;
-        default:
-            return state;
-    }
-};
+import { initializeTimes, updateTimes } from './bookingTimes';
 
 function Main() {
     const [availableTimes, dispatch] = useReducer(

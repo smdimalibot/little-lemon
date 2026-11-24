@@ -2,6 +2,8 @@ import { useReducer } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import HomePage from './HomePage';
 import BookingPage from './BookingPage';
+import bookingTime from './bookingTime';
+
 
 export const initializeTimes = () => [
     '17:00',

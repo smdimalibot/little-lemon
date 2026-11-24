@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import BookingForm from './BookingForm';
-import { initializeTimes, updateTimes } from './Main';
+import { initializeTimes, updateTimes } from './bookingTime';
 
 const sampleTimes = ['17:00', '18:00', '19:00', '20:00', '21:00'];
 

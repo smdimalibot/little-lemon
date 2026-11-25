@@ -36,5 +36,5 @@ test('updateTimes return the expected time state', () => {
 
     expect(window.fetchAPI).toHaveBeenCalledTimes(1);
     expect(window.fetchAPI).toHaveBeenCalledWith(new Date('2026-11-25'));
-    expect(updatedTimes).toEqual(sampleTimes);
+    expect(updatedTimes).toEqual(apiTimes);
 });

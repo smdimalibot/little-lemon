@@ -5,23 +5,65 @@ function BookingForm({ availableTimes, dispatch }) {
     const [time, setTime] = useState('17:00');
     const [guests, setGuests] = useState(2);
     const [occasion, setOccasion] = useState('Birthday');
+    const [errorMessage, setErrorMessage] = useState('');
+    const [confirmedBooking, setConfirmedBooking] = useState(null);
 
     const handleDateChange = (e) =>{
         const selectedDate = e.target.value;
         setDate(selectedDate);
+        setErrorMessage('');
         dispatch({ type: 'UPDATE_TIMES', date: selectedDate })
     };
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log({ date, time, guests, occasion});
+        const guestCount = Number(guests);
+
+        if (!date) {
+            setErrorMessage('Please choose a reservation date.');
+            return;
+        }
+        if (!Number.isInteger(guestCount) || guestCount < 1 || guestCount > 10) {
+            setErrorMessage('Number of guests must be between the numbers of 1 and 10.');
+            return;
+        }
+
+        const formData = { date, time, guests: guestCount, occasion };
+        const isSubmitted =
+            typeof window !== 'undefined' && typeof window.submitAPI === 'function'
+            ? window.submitAPI(formData)
+            : true;
+
+        if (!isSubmitted) {
+            setErrorMessage('Unable to complete reservation. Please try another time or date.');
+            return;
+        }
+
+        setErrorMessage('');
+        setConfirmedBooking(formData);
     };
 
+    if (confirmedBooking) {
+        return (
+            <div className="confirmation-card" role="status" aria-live="polite">
+                <h3>Booking Confirmed!</h3>
+                <p><strong>Date:</strong> {confirmedBooking.date}</p>
+                <p><strong>Time:</strong> {confirmedBooking.time}</p>
+                <p><strong>Guests:</strong> {confirmedBooking.guests}</p>
+                <p><strong>Occasion</strong> {confirmedBooking.occasion}</p>
+                <button
+                    type="button"
+                    className="btn-primary"
+                    onClick={() => setConfirmedBooking(null)}
+                >
+                    Book Another Table
+                </button>
+            </div>
+        );
+    }
+
     return (
-        <form
-            onSubmit={handleSubmit}
-            style={{ display: 'grid', maxWidth: '320px', gap: '16px'}}
-        >
+        <form onSubmit={handleSubmit} className="booking-form" noValidate>
             <label htmlFor="res-date">Choose date</label>
             <input
                 type="date"
@@ -34,6 +76,7 @@ function BookingForm({ availableTimes, dispatch }) {
             <label htmlFor="res-time">Choose time</label>
             <select
                 id="res-time"
+                name="res-time"
                 value={time}
                 onChange={(e) => setTime(e.target.value)}
             >
@@ -63,8 +106,15 @@ function BookingForm({ availableTimes, dispatch }) {
                 onChange={(e) => setOccasion(e.target.value)}
             >
                 <option value="Birthday">Birthday</option>
+                <option value="Engagement">Engagement</option>
                 <option value="Anniversary">Anniversary</option>
             </select>
+
+            {errorMessage && (
+                <p className="form-error" role="alert">
+                    {errorMessage}
+                </p>
+            )}
 
             <button type="submit" className="btn-primary">
                 Make Your Reservation
